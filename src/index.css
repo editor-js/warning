@@ -1,0 +1,11 @@
+.cdx-warning {
+    margin: 0;
+}
+
+.cdx-warning__message {
+    min-height: 158px;
+}
+
+.cdx-warning__title {
+    margin-bottom: 10px;
+}
