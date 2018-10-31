@@ -181,6 +181,17 @@ class Warning {
 
     return el;
   }
+
+  /**
+   * Sanitizer config for Warning Tool saved data
+   * @return {Object}
+   */
+  static get sanitize() {
+      return {
+          title: {},
+          message: {}
+      };
+  }
 }
 
 module.exports = Warning;
