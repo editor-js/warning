@@ -65,7 +65,7 @@ class Warning {
    * @returns {string}
    */
   static get DEFAULT_TITLE_PLACEHOLDER() {
-    return 'Warning alert';
+    return 'Title';
   }
 
   /**
@@ -75,13 +75,13 @@ class Warning {
    * @returns {string}
    */
   static get DEFAULT_MESSAGE_PLACEHOLDER() {
-    return 'Warning message';
+    return 'Message';
   }
 
   /**
    * Warning Tool`s styles
    *
-   * @returns {{baseClass: string, wrapper: string, title: string, input: string, message: string}}
+   * @returns {Object}
    */
   get CSS() {
     return {
@@ -96,10 +96,9 @@ class Warning {
   /**
    * Render plugin`s main Element and fill it with saved data
    *
-   * @param {{data: WarningData, config: WarningConfig, api: object}}
-   * data — previously saved data
-   * config - user config for Tool
-   * api - CodeX Editor API
+   * @param {WarningData} data — previously saved data
+   * @param {WarningConfig} config — user config for Tool
+   * @param {Object} api - CodeX Editor API
    */
   constructor({data, config, api}) {
     this.api = api;

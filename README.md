@@ -2,7 +2,7 @@
 
 # Warning Tool
 
-Provides Warning Blocks for the [CodeX Editor](https://ifmo.su/editor).
+Provides Warning Block for the [CodeX Editor](https://ifmo.su/editor). Block has title and message. It can be used, for example, for editorials notifications or appeals.
 
 ![](https://capella.pics/2d7b7bc1-ac46-4020-89c9-390d1a7297e2.jpg)
 
@@ -69,8 +69,8 @@ var editor = CodexEditor({
       inlineToolbar: true,
       shortcut: 'CMD+SHIFT+W',
       config: {
-        titlePlaceholder: 'Enter warning title',
-        messagePlaceholder: 'Enter warning message',
+        titlePlaceholder: 'Title',
+        messagePlaceholder: 'Message',
       },
     },
   },
