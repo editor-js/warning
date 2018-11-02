@@ -186,7 +186,7 @@ class Warning {
    * Sanitizer config for Warning Tool saved data
    * @return {Object}
    */
-   get sanitize() {
+   static get sanitize() {
       return {
           title: {},
           message: {}
