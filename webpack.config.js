@@ -25,6 +25,7 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
     library: "Warning",
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    libraryExport: 'default'
   }
 };

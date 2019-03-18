@@ -10,9 +10,9 @@ import ToolboxIcon from './svg/toolbox.svg';
 
 /**
  * @class Warning
- * @classdesc Warning Tool for Codex Editor
+ * @classdesc Warning Tool for Editor.js
  * @property {WarningData} data - Warning Tool`s input and output data
- * @property {object} api - Codex Editor API instance
+ * @property {object} api - Editor.js API instance
  *
  * @typedef {object} WarningData
  * @description Warning Tool`s input and output data
@@ -24,34 +24,18 @@ import ToolboxIcon from './svg/toolbox.svg';
  * @property {string} titlePlaceholder - placeholder to show in warning`s title input
  * @property {string} messagePlaceholder - placeholder to show in warning`s message input
  */
-class Warning {
+export default class Warning {
   /**
-   * Should this tools be displayed at the Editor's Toolbox
-   *
-   * @public
-   * @returns {boolean}
-   */
-  static get displayInToolbox() {
-    return true;
-  }
-
-  /**
-   * Get Tool icon element
+   * Get Toolbox settings
    *
    * @public
    * @return {string}
    */
-  static get toolboxIcon() {
-      return ToolboxIcon;
-  }
-
-  /**
-   * Empty Warning is not empty Block
-   * @public
-   * @returns {boolean}
-   */
-  static get contentless() {
-    return true;
+  static get toolbox() {
+      return {
+        icon: ToolboxIcon,
+        title: 'Warning'
+      };
   }
 
   /**
@@ -103,7 +87,7 @@ class Warning {
    *
    * @param {WarningData} data — previously saved data
    * @param {WarningConfig} config — user config for Tool
-   * @param {Object} api - CodeX Editor API
+   * @param {Object} api - Editor.js API
    */
   constructor({data, config, api}) {
     this.api = api;
@@ -194,4 +178,3 @@ class Warning {
   }
 }
 
-module.exports = Warning;
