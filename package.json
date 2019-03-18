@@ -14,21 +14,21 @@
   "repository": "https://github.com/editor-js/warning",
   "main": "./dist/bundle.js",
   "scripts": {
-    "build:dev": "webpack --config ./webpack.config.js --mode=development --watch",
-    "build": "webpack --config ./webpack.config.js --mode=production"
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development --watch"
   },
   "author": {
     "name": "CodeX Team",
-    "email": "team@codex.so"
+    "email": "team@ifmo.su"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "babel-loader": "^8.0.5",
-    "css-loader": "^1.0.0",
-    "style-loader": "^0.21.0",
+    "css-loader": "^2.1.1",
+    "style-loader": "^0.23.1",
     "svg-inline-loader": "^0.8.0",
-    "webpack": "^4.16.3",
-    "webpack-cli": "^3.1.0"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }

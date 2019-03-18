@@ -5,18 +5,25 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: [
+          {
+            loader: 'babel-loader',
+            query: {
+              presets: [ '@babel/preset-env' ],
+            },
+          },
+        ]
       },
       {
         test: /\.css$/,
         use: [
-          "style-loader",
-          "css-loader"
+          'style-loader',
+          'css-loader'
         ]
       },
       {
-          test: /\.svg$/,
-          loader: 'svg-inline-loader?removeSVGTagAttrs=false'
+        test: /\.svg$/,
+        loader: 'svg-inline-loader?removeSVGTagAttrs=false'
       }
     ]
   },
@@ -24,7 +31,7 @@ module.exports = {
     path: __dirname + '/dist',
     publicPath: '/',
     filename: 'bundle.js',
-    library: "Warning",
+    library: 'Warning',
     libraryTarget: 'umd',
     libraryExport: 'default'
   }
