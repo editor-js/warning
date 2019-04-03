@@ -13,7 +13,7 @@ Provides Warning Block for the [CodeX Editor](https://ifmo.su/editor). Block has
 Get the package
 
 ```shell
-npm i --save-dev codex.editor.warning
+npm i --save-dev @editorjs/warning
 ```
 
 Include module at your application
