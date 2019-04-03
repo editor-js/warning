@@ -19,7 +19,7 @@ npm i --save-dev @editorjs/warning
 Include module at your application
 
 ```javascript
-const Warning = require('codex.editor.warning');
+const Warning = require('@editorjs/warning');
 ```
 
 ### Download to your project's source dir
@@ -29,9 +29,9 @@ const Warning = require('codex.editor.warning');
 
 ### Load from CDN
 
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/codex.editor.warning).
+You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/warning).
 
-`https://cdn.jsdelivr.net/npm/codex.editor.warning@2.0.0`
+`https://cdn.jsdelivr.net/npm/@editorjs/warning@latest`
 
 Then require this script on page with CodeX Editor.
 
