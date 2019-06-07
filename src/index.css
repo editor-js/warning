@@ -9,7 +9,7 @@
 }
 
 .cdx-warning [contentEditable=true][data-placeholder]:empty:focus::before {
-  opacity: 0.3;
+  opacity: 0;
 }
 
 
