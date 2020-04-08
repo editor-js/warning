@@ -18,6 +18,7 @@ import ToolboxIcon from './svg/toolbox.svg';
  * @description Warning Tool`s input and output data
  * @property {string} title - warning`s title
  * @property {string} message - warning`s message
+ * @property {string} author - warning`s author
  *
  * @typedef {object} WarningConfig
  * @description Warning Tool`s initial configuration
@@ -77,6 +78,7 @@ export default class Warning {
       baseClass: this.api.styles.block,
       wrapper: 'cdx-warning',
       title: 'cdx-warning__title',
+      author: 'cdx-warning__author',
       input: this.api.styles.input,
       message: 'cdx-warning__message'
     };
@@ -97,7 +99,8 @@ export default class Warning {
 
     this.data = {
       title: data.title || '',
-      message: data.message || ''
+      message: data.message || '',
+      author: data.author || config.author || ''
     };
   }
 
@@ -117,11 +120,19 @@ export default class Warning {
       innerHTML: this.data.message
     });
 
+
     title.dataset.placeholder = this.titlePlaceholder;
     message.dataset.placeholder = this.messagePlaceholder;
 
     container.appendChild(title);
     container.appendChild(message);
+    if (this.data.author) {
+      const author = this._make('div', [this.CSS.author], {
+        contentEditable: false,
+        innerHTML: this.data.author
+      })
+      container.appendChild(author);
+    }
 
     return container;
   }
@@ -138,7 +149,8 @@ export default class Warning {
 
     return Object.assign(this.data, {
       title: title.innerHTML,
-      message: message.innerHTML
+      message: message.innerHTML,
+      author: this.data.author || this.config.author
     });
   }
 
@@ -173,8 +185,8 @@ export default class Warning {
    static get sanitize() {
       return {
           title: {},
-          message: {}
+          message: {},
+          author: {}
       };
   }
 }
-

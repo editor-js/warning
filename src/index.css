@@ -43,3 +43,8 @@
 .cdx-warning__title {
   margin-bottom: 6px;
 }
+
+.cdx-warning__author {
+  text-align: right;
+  color: #6c757d!important;
+}
