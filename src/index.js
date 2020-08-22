@@ -1,12 +1,12 @@
 /**
  * Build styles
  */
-require('./index.css').toString();
-
 /**
  * Import Tool's icon
  */
 import ToolboxIcon from './svg/toolbox.svg';
+
+require('./index.css').toString();
 
 /**
  * @class Warning
@@ -25,21 +25,30 @@ import ToolboxIcon from './svg/toolbox.svg';
  * @property {string} messagePlaceholder - placeholder to show in warning`s message input
  */
 export default class Warning {
+
+  /**
+   * Notify core that read-only mode is supported
+   */
+  static get isReadOnlySupported() {
+    return true;
+  }
+
   /**
    * Get Toolbox settings
    *
    * @public
-   * @return {string}
+   * @returns {string}
    */
   static get toolbox() {
-      return {
-        icon: ToolboxIcon,
-        title: 'Warning'
-      };
+    return {
+      icon: ToolboxIcon,
+      title: 'Warning',
+    };
   }
 
   /**
    * Allow to press Enter inside the Warning
+   *
    * @public
    * @returns {boolean}
    */
@@ -70,7 +79,7 @@ export default class Warning {
   /**
    * Warning Tool`s styles
    *
-   * @returns {Object}
+   * @returns {object}
    */
   get CSS() {
     return {
@@ -78,7 +87,7 @@ export default class Warning {
       wrapper: 'cdx-warning',
       title: 'cdx-warning__title',
       input: this.api.styles.input,
-      message: 'cdx-warning__message'
+      message: 'cdx-warning__message',
     };
   }
 
@@ -87,17 +96,19 @@ export default class Warning {
    *
    * @param {WarningData} data — previously saved data
    * @param {WarningConfig} config — user config for Tool
-   * @param {Object} api - Editor.js API
+   * @param {object} api - Editor.js API
+   * @param {boolean} readOnly - read-only mode flag
    */
-  constructor({data, config, api}) {
+  constructor({ data, config, api, readOnly }) {
     this.api = api;
+    this.readOnly = readOnly;
 
     this.titlePlaceholder = config.titlePlaceholder || Warning.DEFAULT_TITLE_PLACEHOLDER;
     this.messagePlaceholder = config.messagePlaceholder || Warning.DEFAULT_MESSAGE_PLACEHOLDER;
 
     this.data = {
       title: data.title || '',
-      message: data.message || ''
+      message: data.message || '',
     };
   }
 
@@ -109,12 +120,12 @@ export default class Warning {
   render() {
     const container = this._make('div', [this.CSS.baseClass, this.CSS.wrapper]);
     const title = this._make('div', [this.CSS.input, this.CSS.title], {
-      contentEditable: true,
-      innerHTML: this.data.title
+      contentEditable: !this.readOnly,
+      innerHTML: this.data.title,
     });
     const message = this._make('div', [this.CSS.input, this.CSS.message], {
-      contentEditable: true,
-      innerHTML: this.data.message
+      contentEditable: !this.readOnly,
+      innerHTML: this.data.message,
     });
 
     title.dataset.placeholder = this.titlePlaceholder;
@@ -138,7 +149,7 @@ export default class Warning {
 
     return Object.assign(this.data, {
       title: title.innerHTML,
-      message: message.innerHTML
+      message: message.innerHTML,
     });
   }
 
@@ -146,20 +157,20 @@ export default class Warning {
    * Helper for making Elements with attributes
    *
    * @param  {string} tagName           - new Element tag name
-   * @param  {array|string} classNames  - list or name of CSS classname(s)
-   * @param  {Object} attributes        - any attributes
-   * @return {Element}
+   * @param  {Array|string} classNames  - list or name of CSS classname(s)
+   * @param  {object} attributes        - any attributes
+   * @returns {Element}
    */
   _make(tagName, classNames = null, attributes = {}) {
-    let el = document.createElement(tagName);
+    const el = document.createElement(tagName);
 
-    if ( Array.isArray(classNames) ) {
+    if (Array.isArray(classNames)) {
       el.classList.add(...classNames);
-    } else if( classNames ) {
+    } else if (classNames) {
       el.classList.add(classNames);
     }
 
-    for (let attrName in attributes) {
+    for (const attrName in attributes) {
       el[attrName] = attributes[attrName];
     }
 
@@ -168,13 +179,13 @@ export default class Warning {
 
   /**
    * Sanitizer config for Warning Tool saved data
-   * @return {Object}
+   *
+   * @returns {object}
    */
-   static get sanitize() {
-      return {
-          title: {},
-          message: {}
-      };
+  static get sanitize() {
+    return {
+      title: {},
+      message: {},
+    };
   }
 }
-
