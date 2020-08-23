@@ -1,11 +1,11 @@
 /**
- * Build styles
- */
-/**
  * Import Tool's icon
  */
 import ToolboxIcon from './svg/toolbox.svg';
 
+/**
+ * Build styles
+ */
 require('./index.css').toString();
 
 /**
