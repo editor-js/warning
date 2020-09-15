@@ -49,14 +49,14 @@ var editor = CodexEditor({
   
   tools: {
     ...
-    warning: Warning,
+    success: Success,
   },
   
   ...
 });
 ```
 
-Or init Warning Tool with additional settings
+Or init Success Tool with additional settings
 
 ```javascript
 var editor = CodexEditor({
@@ -64,8 +64,8 @@ var editor = CodexEditor({
   
   tools: {
     ...
-    warning: {
-      class: Warning,
+    success: {
+      class: Success,
       inlineToolbar: true,
       shortcut: 'CMD+SHIFT+W',
       config: {
@@ -83,19 +83,19 @@ var editor = CodexEditor({
 
 | Field              | Type     | Description                       |
 | ------------------ | -------- | ----------------------------------|
-| titlePlaceholder   | `string` | Warning Tool's title placeholder  |
-| messagePlaceholder | `string` | Warning Tool's message placeholder|
+| titlePlaceholder   | `string` | Success Tool's title placeholder  |
+| messagePlaceholder | `string` | Success Tool's message placeholder|
 
 ## Output data
 
 | Field     | Type     | Description      |
 | --------- | -------- | -----------------|
-| title     | `string` | warning's title  |
-| message   | `string` | warning's message|
+| title     | `string` | Success's title  |
+| message   | `string` | Success's message|
 
 ```json
 {
-    "type" : "warning",
+    "type" : "success",
     "data" : {
         "title" : "Note:",
         "message" : "Avoid using this method just for lulz. It can be very dangerous opposite your daily fun stuff."
