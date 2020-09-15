@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.cdx-success [contentEditable=true][data-placeholder]::before{
+.cdx-success [contentEditable=true][data-placeholder]::before {
   position: absolute;
   content: attr(data-placeholder);
   color: #707684;
@@ -17,7 +17,6 @@
 .cdx-success [contentEditable=true][data-placeholder]:empty:focus::before {
   opacity: 0;
 }
-
 
 .cdx-success::before {
   content: '';
@@ -38,8 +37,10 @@
 
 .cdx-success__message {
   min-height: 85px;
+  line-height: 1.6;
 }
 
 .cdx-success__title {
   margin-bottom: 6px;
+  line-height: 1.6;
 }
