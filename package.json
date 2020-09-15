@@ -9,7 +9,7 @@
     "editor.js",
     "editor"
   ],
-  "description": "Warning Tool for Editor.js",
+  "description": "Success Tool for Editor.js",
   "license": "MIT",
   "repository": "https://github.com/editor-js/success",
   "main": "./dist/bundle.js",
