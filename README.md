@@ -1,8 +1,8 @@
 ![](https://badgen.net/badge/CodeX%20Editor/v2.0/blue)
 
-# Warning Tool
+# Success Tool
 
-Provides Warning Block for the [CodeX Editor](https://ifmo.su/editor). Block has title and message. It can be used, for example, for editorials notifications or appeals.
+Provides Success Block for the [CodeX Editor](https://ifmo.su/editor). Block has title and message. It can be used, for example, for editorials notifications or appeals.
 
 ![](https://capella.pics/2d7b7bc1-ac46-4020-89c9-390d1a7297e2.jpg)
 
@@ -13,13 +13,13 @@ Provides Warning Block for the [CodeX Editor](https://ifmo.su/editor). Block has
 Get the package
 
 ```shell
-npm i --save-dev @editorjs/warning
+npm i --save-dev @editorjs/success
 ```
 
 Include module at your application
 
 ```javascript
-const Warning = require('@editorjs/warning');
+const Success = require('@editorjs/success');
 ```
 
 ### Download to your project's source dir
@@ -29,9 +29,9 @@ const Warning = require('@editorjs/warning');
 
 ### Load from CDN
 
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/warning).
+You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/success).
 
-`https://cdn.jsdelivr.net/npm/@editorjs/warning@latest`
+`https://cdn.jsdelivr.net/npm/@editorjs/success@latest`
 
 Then require this script on page with CodeX Editor.
 
@@ -49,14 +49,14 @@ var editor = CodexEditor({
   
   tools: {
     ...
-    warning: Warning,
+    success: Success,
   },
   
   ...
 });
 ```
 
-Or init Warning Tool with additional settings
+Or init Success Tool with additional settings
 
 ```javascript
 var editor = CodexEditor({
@@ -64,8 +64,8 @@ var editor = CodexEditor({
   
   tools: {
     ...
-    warning: {
-      class: Warning,
+    success: {
+      class: Success,
       inlineToolbar: true,
       shortcut: 'CMD+SHIFT+W',
       config: {
@@ -83,19 +83,19 @@ var editor = CodexEditor({
 
 | Field              | Type     | Description                       |
 | ------------------ | -------- | ----------------------------------|
-| titlePlaceholder   | `string` | Warning Tool's title placeholder  |
-| messagePlaceholder | `string` | Warning Tool's message placeholder|
+| titlePlaceholder   | `string` | Success Tool's title placeholder  |
+| messagePlaceholder | `string` | Success Tool's message placeholder|
 
 ## Output data
 
 | Field     | Type     | Description      |
 | --------- | -------- | -----------------|
-| title     | `string` | warning's title  |
-| message   | `string` | warning's message|
+| title     | `string` | Success's title  |
+| message   | `string` | Success's message|
 
 ```json
 {
-    "type" : "warning",
+    "type" : "success",
     "data" : {
         "title" : "Note:",
         "message" : "Avoid using this method just for lulz. It can be very dangerous opposite your daily fun stuff."
