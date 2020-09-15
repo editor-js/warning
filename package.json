@@ -1,17 +1,17 @@
 {
-  "name": "@editorjs/warning",
+  "name": "@editorjs/success",
   "version": "1.1.1",
   "keywords": [
     "codex editor",
     "tool",
-    "warning",
+    "success",
     "editorjs",
     "editor.js",
     "editor"
   ],
   "description": "Warning Tool for Editor.js",
   "license": "MIT",
-  "repository": "https://github.com/editor-js/warning",
+  "repository": "https://github.com/editor-js/success",
   "main": "./dist/bundle.js",
   "scripts": {
     "build": "webpack --mode production",
