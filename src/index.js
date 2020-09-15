@@ -9,22 +9,22 @@ require('./index.css').toString();
 import ToolboxIcon from './svg/toolbox.svg';
 
 /**
- * @class Warning
- * @classdesc Warning Tool for Editor.js
- * @property {WarningData} data - Warning Tool`s input and output data
+ * @class Success
+ * @classdesc Success Tool for Editor.js
+ * @property {SuccessData} data - Success Tool`s input and output data
  * @property {object} api - Editor.js API instance
  *
- * @typedef {object} WarningData
- * @description Warning Tool`s input and output data
- * @property {string} title - warning`s title
- * @property {string} message - warning`s message
+ * @typedef {object} SuccessData
+ * @description Success Tool`s input and output data
+ * @property {string} title - success`s title
+ * @property {string} message - success`s message
  *
- * @typedef {object} WarningConfig
- * @description Warning Tool`s initial configuration
- * @property {string} titlePlaceholder - placeholder to show in warning`s title input
- * @property {string} messagePlaceholder - placeholder to show in warning`s message input
+ * @typedef {object} SuccessConfig
+ * @description Success Tool`s initial configuration
+ * @property {string} titlePlaceholder - placeholder to show in success`s title input
+ * @property {string} messagePlaceholder - placeholder to show in success`s message input
  */
-export default class Warning {
+export default class Success {
   /**
    * Get Toolbox settings
    *
@@ -34,12 +34,12 @@ export default class Warning {
   static get toolbox() {
       return {
         icon: ToolboxIcon,
-        title: 'Warning'
+        title: 'Success'
       };
   }
 
   /**
-   * Allow to press Enter inside the Warning
+   * Allow to press Enter inside the Success
    * @public
    * @returns {boolean}
    */
@@ -48,7 +48,7 @@ export default class Warning {
   }
 
   /**
-   * Default placeholder for warning title
+   * Default placeholder for success title
    *
    * @public
    * @returns {string}
@@ -58,7 +58,7 @@ export default class Warning {
   }
 
   /**
-   * Default placeholder for warning message
+   * Default placeholder for success message
    *
    * @public
    * @returns {string}
@@ -68,32 +68,32 @@ export default class Warning {
   }
 
   /**
-   * Warning Tool`s styles
+   * Success Tool`s styles
    *
    * @returns {Object}
    */
   get CSS() {
     return {
       baseClass: this.api.styles.block,
-      wrapper: 'cdx-warning',
-      title: 'cdx-warning__title',
+      wrapper: 'cdx-success',
+      title: 'cdx-success__title',
       input: this.api.styles.input,
-      message: 'cdx-warning__message'
+      message: 'cdx-success__message'
     };
   }
 
   /**
    * Render plugin`s main Element and fill it with saved data
    *
-   * @param {WarningData} data — previously saved data
-   * @param {WarningConfig} config — user config for Tool
+   * @param {SuccessData} data — previously saved data
+   * @param {SuccessConfig} config — user config for Tool
    * @param {Object} api - Editor.js API
    */
   constructor({data, config, api}) {
     this.api = api;
 
-    this.titlePlaceholder = config.titlePlaceholder || Warning.DEFAULT_TITLE_PLACEHOLDER;
-    this.messagePlaceholder = config.messagePlaceholder || Warning.DEFAULT_MESSAGE_PLACEHOLDER;
+    this.titlePlaceholder = config.titlePlaceholder || Success.DEFAULT_TITLE_PLACEHOLDER;
+    this.messagePlaceholder = config.messagePlaceholder || Success.DEFAULT_MESSAGE_PLACEHOLDER;
 
     this.data = {
       title: data.title || '',
@@ -102,7 +102,7 @@ export default class Warning {
   }
 
   /**
-   * Create Warning Tool container with inputs
+   * Create Success Tool container with inputs
    *
    * @returns {Element}
    */
@@ -127,14 +127,14 @@ export default class Warning {
   }
 
   /**
-   * Extract Warning data from Warning Tool element
+   * Extract Success data from Success Tool element
    *
-   * @param {HTMLDivElement} warningElement - element to save
-   * @returns {WarningData}
+   * @param {HTMLDivElement} successElement - element to save
+   * @returns {SuccessData}
    */
-  save(warningElement) {
-    const title = warningElement.querySelector(`.${this.CSS.title}`);
-    const message = warningElement.querySelector(`.${this.CSS.message}`);
+  save(successElement) {
+    const title = successElement.querySelector(`.${this.CSS.title}`);
+    const message = successElement.querySelector(`.${this.CSS.message}`);
 
     return Object.assign(this.data, {
       title: title.innerHTML,
@@ -167,7 +167,7 @@ export default class Warning {
   }
 
   /**
-   * Sanitizer config for Warning Tool saved data
+   * Sanitizer config for Success Tool saved data
    * @return {Object}
    */
    static get sanitize() {
