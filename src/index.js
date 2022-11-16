@@ -1,7 +1,7 @@
 /**
  * Import Tool's icon
  */
-import ToolboxIcon from './svg/toolbox.svg';
+import { IconWarning } from '@codexteam/icons';
 
 /**
  * Build styles
@@ -41,7 +41,7 @@ export default class Warning {
    */
   static get toolbox() {
     return {
-      icon: ToolboxIcon,
+      icon: IconWarning,
       title: 'Warning',
     };
   }
