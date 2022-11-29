@@ -1,5 +1,6 @@
 .cdx-warning {
   position: relative;
+  padding-left: 36px;
 }
 
 .cdx-warning [contentEditable=true][data-placeholder]::before{
@@ -27,7 +28,7 @@
   background-size: 24px 24px;
   position: absolute;
   margin-top: 10px;
-  left: -30px;
+  left: 0;
 }
 
 @media all and (max-width: 735px) {
