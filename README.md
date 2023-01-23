@@ -4,7 +4,7 @@
 
 Provides Warning Block for the [CodeX Editor](https://ifmo.su/editor). Block has title and message. It can be used, for example, for editorials notifications or appeals.
 
-![](https://capella.pics/2d7b7bc1-ac46-4020-89c9-390d1a7297e2.jpg)
+![](assets/2d7b7bc1-ac46-4020-89c9-390d1a7297e2.jpg)
 
 ## Installation
 
