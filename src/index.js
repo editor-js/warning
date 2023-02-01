@@ -1,12 +1,12 @@
 /**
  * Import Tool's icon
  */
-import { IconWarning } from '@codexteam/icons';
+import { IconWarning } from "@codexteam/icons";
 
 /**
  * Build styles
  */
-require('./index.css').toString();
+require("./index.css").toString();
 
 /**
  * @class Warning
@@ -25,7 +25,6 @@ require('./index.css').toString();
  * @property {string} messagePlaceholder - placeholder to show in warning`s message input
  */
 export default class Warning {
-
   /**
    * Notify core that read-only mode is supported
    */
@@ -42,7 +41,7 @@ export default class Warning {
   static get toolbox() {
     return {
       icon: IconWarning,
-      title: 'Warning',
+      title: "Warning",
     };
   }
 
@@ -57,23 +56,32 @@ export default class Warning {
   }
 
   /**
-   * Default placeholder for warning title
-   *
-   * @public
-   * @returns {string}
-   */
-  static get DEFAULT_TITLE_PLACEHOLDER() {
-    return 'Title';
-  }
-
-  /**
    * Default placeholder for warning message
    *
    * @public
    * @returns {string}
    */
   static get DEFAULT_MESSAGE_PLACEHOLDER() {
-    return 'Message';
+    return "Message";
+  }
+
+  /**
+   * Supported Alert types
+   *
+   * @public
+   * @returns {array}
+   */
+  static get WARNING_TYPES() {
+    return [
+      "primary",
+      "secondary",
+      "info",
+      "success",
+      "warning",
+      "danger",
+      "light",
+      "dark",
+    ];
   }
 
   /**
@@ -84,10 +92,9 @@ export default class Warning {
   get CSS() {
     return {
       baseClass: this.api.styles.block,
-      wrapper: 'cdx-warning',
-      title: 'cdx-warning__title',
+      wrapper: "cdx-warning",
       input: this.api.styles.input,
-      message: 'cdx-warning__message',
+      message: "cdx-warning__message",
     };
   }
 
@@ -103,12 +110,12 @@ export default class Warning {
     this.api = api;
     this.readOnly = readOnly;
 
-    this.titlePlaceholder = config.titlePlaceholder || Warning.DEFAULT_TITLE_PLACEHOLDER;
-    this.messagePlaceholder = config.messagePlaceholder || Warning.DEFAULT_MESSAGE_PLACEHOLDER;
+    this.messagePlaceholder =
+      config.messagePlaceholder || Warning.DEFAULT_MESSAGE_PLACEHOLDER;
 
     this.data = {
-      title: data.title || '',
-      message: data.message || '',
+      type: data.type || "",
+      message: data.message || "",
     };
   }
 
@@ -118,20 +125,13 @@ export default class Warning {
    * @returns {Element}
    */
   render() {
-    const container = this._make('div', [this.CSS.baseClass, this.CSS.wrapper]);
-    const title = this._make('div', [this.CSS.input, this.CSS.title], {
-      contentEditable: !this.readOnly,
-      innerHTML: this.data.title,
-    });
-    const message = this._make('div', [this.CSS.input, this.CSS.message], {
+    const container = this._make("div", [this.CSS.baseClass, this.CSS.wrapper]);
+    const message = this._make("div", [this.CSS.input, this.CSS.message], {
       contentEditable: !this.readOnly,
       innerHTML: this.data.message,
     });
 
-    title.dataset.placeholder = this.titlePlaceholder;
     message.dataset.placeholder = this.messagePlaceholder;
-
-    container.appendChild(title);
     container.appendChild(message);
 
     return container;
@@ -144,11 +144,9 @@ export default class Warning {
    * @returns {WarningData}
    */
   save(warningElement) {
-    const title = warningElement.querySelector(`.${this.CSS.title}`);
     const message = warningElement.querySelector(`.${this.CSS.message}`);
 
     return Object.assign(this.data, {
-      title: title.innerHTML,
       message: message.innerHTML,
     });
   }
@@ -184,7 +182,7 @@ export default class Warning {
    */
   static get sanitize() {
     return {
-      title: {},
+      type: {},
       message: {},
     };
   }
