@@ -1,11 +1,24 @@
 .cdx-warning {
   position: relative;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  border: 1px solid gray;
 }
 
-@media all and (min-width: 736px) {
-  .cdx-warning {
-    padding-left: 36px;
-  }
+.cdx-warning__message {
+  outline: none;
+  min-height: 45px;
+  position: relative;
+  cursor: text;
+}
+
+.cdx-warning [contentEditable="true"][data-placeholder]::before {
+  position: absolute;
+  content: attr(data-placeholder);
+  color: #707684;
+  font-weight: normal;
+  opacity: 0;
 }
 
 .cdx-warning [contentEditable="true"][data-placeholder]::before {
@@ -35,16 +48,98 @@
   left: 0;
 }
 
-@media all and (max-width: 735px) {
+/* @media all and (max-width: 735px) {
   .cdx-warning::before {
     display: none;
   }
-}
+} */
 
-.cdx-warning__message {
-  min-height: 85px;
-}
-
+/* 
 .cdx-warning__title {
   margin-bottom: 6px;
+} */
+
+.cdx-warning-primary {
+  border: 1px solid #1d77ff;
+  color: #1d77ff;
+}
+
+.cdx-warning-secondary {
+  /* background-color: #1a1b1e; */
+  border: 1px solid #1a1b1e;
+  color: #1a1b1e;
+}
+
+.cdx-warning-info {
+  /* background-color: #1bbc9c; */
+  border: 1px solid #1bbc9c;
+  color: #1bbc9c;
+}
+
+.cdx-warning-success {
+  /* background-color: #3eb75d; */
+  border: 1px solid #3eb75d;
+  color: #3eb75d;
+}
+
+.cdx-warning-warning {
+  /* background-color: #e07023; */
+  border: 1px solid #e07023;
+  color: #e07023;
+}
+
+.cdx-warning-error {
+  /* background-color: #e64937; */
+  border: 1px solid #e64937;
+  color: #e64937;
+}
+
+.cdx-warning-light {
+  /* background-color: #626262; */
+  border: 1px solid #b3b4b5;
+  color: #626262;
+}
+
+.cdx-warning-dark {
+  /* background-color: #000; */
+  border: 1px solid #000;
+  color: #000;
+  opacity: 1;
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+.cdx-warning.cdx-settings-button {
+  margin: 3px;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  opacity: 0.5;
+}
+
+.cdx-warning.cdx-settings-button:hover {
+  opacity: 1;
+}
+
+.cdx-warning.cdx-settings-button--active,
+.cdx-warning.ce-settings__button--focused {
+  font-weight: 900;
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.title {
+  margin-left: 3px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
 }

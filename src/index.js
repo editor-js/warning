@@ -66,25 +66,6 @@ export default class Warning {
   }
 
   /**
-   * Supported Alert types
-   *
-   * @public
-   * @returns {array}
-   */
-  static get WARNING_TYPES() {
-    return [
-      "primary",
-      "secondary",
-      "info",
-      "success",
-      "warning",
-      "danger",
-      "light",
-      "dark",
-    ];
-  }
-
-  /**
    * Warning Tool`s styles
    *
    * @returns {object}
@@ -92,9 +73,14 @@ export default class Warning {
   get CSS() {
     return {
       baseClass: this.api.styles.block,
+      settingsButton: this.api.styles.settingsButton,
+      settingsButtonActive: this.api.styles.settingsButtonActive,
       wrapper: "cdx-warning",
-      input: this.api.styles.input,
+      wrapperForType: (type) => `cdx-warning-${type}`,
       message: "cdx-warning__message",
+      settingsContainer: "settingsButton-wrapper",
+      title: "title",
+      background: "bg",
     };
   }
 
@@ -109,12 +95,19 @@ export default class Warning {
   constructor({ data, config, api, readOnly }) {
     this.api = api;
     this.readOnly = readOnly;
-
     this.messagePlaceholder =
       config.messagePlaceholder || Warning.DEFAULT_MESSAGE_PLACEHOLDER;
+    this.defaultType = config.defaultType;
 
+    this.readOnly = readOnly;
+    this.config = {
+      defaultType: config.defaultType,
+      typeColor: config.typeColor,
+    };
     this.data = {
-      type: data.type || "",
+      type: Object.keys(this.config.typeColor).includes(data.type)
+        ? data.type
+        : this.defaultType,
       message: data.message || "",
     };
   }
@@ -125,16 +118,106 @@ export default class Warning {
    * @returns {Element}
    */
   render() {
-    const container = this._make("div", [this.CSS.baseClass, this.CSS.wrapper]);
-    const message = this._make("div", [this.CSS.input, this.CSS.message], {
+    const containerClasses = [
+      this.CSS.wrapper,
+      this.CSS.wrapperForType(this.data.type),
+    ];
+
+    const messageEl = this._make("div", [this.CSS.message], {
       contentEditable: !this.readOnly,
       innerHTML: this.data.message,
     });
 
-    message.dataset.placeholder = this.messagePlaceholder;
-    container.appendChild(message);
+    this.background = this._make("div", [this.CSS.background]);
 
-    return container;
+    messageEl.dataset.placeholder = this.messagePlaceholder;
+
+    this.container = this._make("div", containerClasses);
+
+    this.container.appendChild(this.background);
+    this.container.appendChild(messageEl);
+
+    if (this.data.type) {
+      const calloutType = this.data.type;
+      const colorCode = this.config.typeColor[`${calloutType}`];
+      this.background.style.backgroundColor = colorCode;
+    }
+
+    return this.container;
+  }
+
+  /**
+   * Create Block's settings block
+   *
+   * @returns {HTMLElement}
+   */
+
+  renderSettings() {
+    const settingsContainer = this._make("div", [this.CSS.settingsContainer]);
+    const title = this._make("div", [this.CSS.title]);
+    title.innerHTML = `${this.api.i18n.t(" Type")} `;
+    settingsContainer.appendChild(title);
+
+    Object.keys(this.config.typeColor).forEach((type) => {
+      const settingsButton = this._make(
+        "div",
+        [
+          this.CSS.settingsButton,
+          this.CSS.wrapper,
+          this.CSS.wrapperForType(type),
+        ],
+        {
+          innerHTML: "A",
+        }
+      );
+      if (this.data.type === type) {
+        // Highlight current type button
+        settingsButton.classList.add(this.CSS.settingsButtonActive);
+      }
+
+      settingsButton.addEventListener("click", () => {
+        this._changeAlertType(type);
+
+        // Un-highlight previous type button
+        settingsContainer
+          .querySelectorAll(`.${this.CSS.settingsButton}`)
+          .forEach((button) =>
+            button.classList.remove(this.CSS.settingsButtonActive)
+          );
+
+        // and highlight the clicked type button
+        settingsButton.classList.add(this.CSS.settingsButtonActive);
+      });
+
+      settingsContainer.appendChild(settingsButton);
+    });
+
+    return settingsContainer;
+  }
+
+  /**
+   * Helper for changing style of Alert block with the selected Alert type
+   *
+   * @param {string} newType - new Alert type to be applied to the block
+   * @private
+   */
+  _changeAlertType(newType) {
+    // Save new type
+    this.data.type = newType;
+
+    Object.keys(this.config.typeColor).forEach((type) => {
+      const warningClass = this.CSS.wrapperForType(type);
+      // Remove the old Alert type class
+      this.container.classList.remove(warningClass);
+
+      if (newType === type) {
+        // Add an Alert class for the selected Alert type
+        this.container.classList.add(warningClass);
+
+        const colorCode = this.config.typeColor[`${type}`];
+        this.background.style.backgroundColor = colorCode;
+      }
+    });
   }
 
   /**
@@ -144,11 +227,9 @@ export default class Warning {
    * @returns {WarningData}
    */
   save(warningElement) {
-    const message = warningElement.querySelector(`.${this.CSS.message}`);
+    const messageEl = warningElement.querySelector(`.${this.CSS.message}`);
 
-    return Object.assign(this.data, {
-      message: message.innerHTML,
-    });
+    return { ...this.data, message: messageEl.innerHTML };
   }
 
   /**
