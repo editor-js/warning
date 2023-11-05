@@ -1,4 +1,4 @@
 src/
 .babelrc
-webpack.config.js
+vite.config.js
 yarn.lock
