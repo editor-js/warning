@@ -20,17 +20,7 @@ Include module at your application
 import Warning from '@editorjs/warning';
 ```
 
-### Load from CDN
-
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/warning).
-
-`https://cdn.jsdelivr.net/npm/@editorjs/warning@latest`
-
-Then require this script on page with CodeX Editor.
-
-```html
-<script src="..."></script>
-```
+Optionally, you can load this tool from CDN [JsDelivr CDN](https://cdn.jsdelivr.net/npm/@editorjs/warning@latest)
 
 ## Usage
 
