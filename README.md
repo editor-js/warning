@@ -8,8 +8,6 @@ Provides Warning Block for the [CodeX Editor](https://ifmo.su/editor). Block has
 
 ## Installation
 
-### Install via NPM
-
 Get the package
 
 ```shell
