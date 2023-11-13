@@ -20,6 +20,10 @@ Include module at your application
 
 ```javascript
 const Warning = require('@editorjs/warning');
+
+// OR
+
+import Warning from "@editorjs/warning";
 ```
 
 ### Download to your project's source dir
