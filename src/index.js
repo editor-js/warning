@@ -6,7 +6,7 @@ import { IconWarning } from '@codexteam/icons';
 /**
  * Build styles
  */
-require('./index.css').toString();
+import './index.css';
 
 /**
  * @class Warning

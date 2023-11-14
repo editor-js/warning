@@ -8,36 +8,19 @@ Provides Warning Block for the [CodeX Editor](https://ifmo.su/editor). Block has
 
 ## Installation
 
-### Install via NPM
-
 Get the package
 
 ```shell
-npm i --save-dev @editorjs/warning
+yarn add @editorjs/warning
 ```
 
 Include module at your application
 
 ```javascript
-const Warning = require('@editorjs/warning');
+import Warning from '@editorjs/warning';
 ```
 
-### Download to your project's source dir
-
-1. Upload folder `dist` from repository
-2. Add `dist/bundle.js` file to your page.
-
-### Load from CDN
-
-You can load specific version of package from [jsDelivr CDN](https://www.jsdelivr.com/package/npm/@editorjs/warning).
-
-`https://cdn.jsdelivr.net/npm/@editorjs/warning@latest`
-
-Then require this script on page with CodeX Editor.
-
-```html
-<script src="..."></script>
-```
+Optionally, you can load this tool from CDN [JsDelivr CDN](https://cdn.jsdelivr.net/npm/@editorjs/warning@latest)
 
 ## Usage
 
