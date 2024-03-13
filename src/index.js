@@ -53,7 +53,7 @@ export default class Warning {
    * @returns {boolean}
    */
   static get enableLineBreaks() {
-    return true;
+    return false;
   }
 
   /**
@@ -185,7 +185,9 @@ export default class Warning {
   static get sanitize() {
     return {
       title: {},
-      message: {},
+      message: {
+        br: true,
+      },
     };
   }
 }
