@@ -1,6 +1,6 @@
 {
-  "name": "@editorjs/warning",
-  "version": "1.4.0",
+  "name": "@egg-/editorjs-warning",
+  "version": "1.4.1",
   "keywords": [
     "codex editor",
     "warning",

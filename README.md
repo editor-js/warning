@@ -1,3 +1,7 @@
+# egg- Fork Version
+
+Changed line break policy
+
 ![](https://badgen.net/badge/CodeX%20Editor/v2.0/blue)
 
 # Warning Tool
