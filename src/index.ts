@@ -19,6 +19,9 @@ import { IconWarning } from '@codexteam/icons';
  */
 import './index.css';
 
+/**
+ * Warning Tool`s CSS classnames
+ */
 interface WarningCSS {
   baseClass: string;
   wrapper: string;
@@ -28,46 +31,85 @@ interface WarningCSS {
 }
 
 /**
- * @typedef {object} WarningData
- * @description Warning Tool`s input and output data
- * @property {string} title - warning`s title
- * @property {string} message - warning`s message
+ * Warning Tool's input and output data
  */
 export interface WarningData extends BlockToolData {
+  /**
+   * Warning's title
+   */
   title: string;
+  /**
+   * Warning's message
+   */
   message: string;
 }
 
 /**
- * @typedef {object} WarningConfig
- * @description Warning Tool`s initial configuration
- * @property {string} titlePlaceholder - placeholder to show in warning`s title input
- * @property {string} messagePlaceholder - placeholder to show in warning`s message input
+ * Warning Tool's initial configuration
  */
 export interface WarningConfig extends ToolConfig {
+  /**
+   * Placeholder to show in warning`s title input
+   */
   titlePlaceholder?: string;
+  /**
+   * Placeholder to show in warning`s message input
+   */
   messagePlaceholder?: string;
 }
 
+/**
+ * Warning Tool's constructor arguments
+ */
 interface WarningConstructorArgs {
+  /**
+   * Previously saved warning`s data
+   */
   data: WarningData;
+  /**
+   * Warning Tool`s configuration
+   */
   config?: WarningConfig;
+  /**
+   * Editor.js API instance
+   */
   api: API;
+  /**
+   * Read-only mode
+   */
   readOnly: boolean;
 }
 
 /**
  * @class Warning
  * @classdesc Warning Tool for Editor.js
- * @property {WarningData} data - Warning Tool`s input and output data
  * @property {API} api - Editor.js API instance
+ * @property {WarningData} data - Warning Tool`s input and output data
+ * @property {boolean} readOnly - Read-only mode
+ * @property {string} titlePlaceholder - Placeholder for title input
+ * @property {string} messagePlaceholder - Placeholder for message input
  */
 export default class Warning implements BlockTool {
+  /**
+   * Editor.js API instance
+   */
   private api: API;
-  private readOnly: boolean;
+  /**
+   * Warning Tool`s input and output data
+   */
   private data: WarningData;
-  titlePlaceholder: string;
-  messagePlaceholder: string;
+  /**
+   * Read-only mode is supported
+   */
+  private readOnly: boolean;
+  /**
+   * Placeholder for the title input
+   */
+  private titlePlaceholder: string;
+  /**
+   * Placeholder for the message input
+   */
+  private messagePlaceholder: string;
 
   /**
    * Notify core that read-only mode is supported
@@ -80,7 +122,7 @@ export default class Warning implements BlockTool {
    * Get Toolbox settings
    *
    * @public
-   * @returns {ToolboxConfig}
+   * @returns {ToolboxConfig} An object containing Tool's icon and title.
    */
   static get toolbox(): ToolboxConfig {
     return {
@@ -122,7 +164,7 @@ export default class Warning implements BlockTool {
   /**
    * Warning Tool`s styles
    *
-   * @returns {WarningCSS}
+   * @returns {WarningCSS} An object containing Tool`s CSS classnames.
    */
   get CSS(): WarningCSS {
     return {
@@ -161,7 +203,7 @@ export default class Warning implements BlockTool {
   /**
    * Create Warning Tool container with inputs
    *
-   * @returns {Element}
+   * @returns {Element} Html element of Warning Tool.
    */
   render(): HTMLElement {
     const container = this._make('div', [this.CSS.baseClass, this.CSS.wrapper]);
@@ -187,7 +229,7 @@ export default class Warning implements BlockTool {
    * Extract Warning data from Warning Tool element
    *
    * @param {HTMLDivElement} warningElement - element to save
-   * @returns {WarningData}
+   * @returns {WarningData} Warning Tool`s data.
    */
   save(warningElement: HTMLDivElement): WarningData {
     const title = warningElement.querySelector(`.${this.CSS.title}`);
@@ -205,7 +247,7 @@ export default class Warning implements BlockTool {
    * @param  {string} tagName           - new Element tag name
    * @param  {Array|string} classNames  - list or name of CSS classname(s)
    * @param  {object} attributes        - any attributes
-   * @returns {Element}
+   * @returns {Element} Html element of {tagName}.
    */
   private _make<K extends keyof HTMLElementTagNameMap>(
     tagName: K,
